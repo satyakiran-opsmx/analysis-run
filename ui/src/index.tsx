@@ -7,6 +7,7 @@ export const Extension = (props: {
   tree: ApplicationResourceTree;
   resource: State;
 }) => {
+  console.log(props);
   return (
     <div className="shopping-list">
       <h1>Shopping List</h1>
