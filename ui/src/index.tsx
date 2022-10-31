@@ -14,7 +14,8 @@ export const Extension = (props: {
   useEffect(() => {
     let latestCanaryId = null;
     if (props.resource.status.metricResults && props.resource.status.metricResults.length) {
-      latestCanaryId = props.resource.status.metricResults[props.resource.status.metricResults.length - 1]?.canaryId;
+      let metricResults = props.resource.status.metricResults[props.resource.status.metricResults.length - 1];
+      latestCanaryId = metricResults.measurements[metricResults.measurements.length-1]?.metadata?.canaryId;
       console.log(latestCanaryId)
       if (!latestCanaryId) {
         latestCanaryId = '1498'; //dummy canary to test
