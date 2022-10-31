@@ -1,42 +1,44 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface ApplicationResourceTree { }
-interface State { }
+interface State { status: any }
 
 export const Extension = (props: {
   tree: ApplicationResourceTree;
   resource: State;
 }) => {
+  const [noReport, setReportStatus] = useState(false);
   useEffect(() => {
-    let latestCanary = '/dashboardservice/v2/users/' + `user2` + '/applications/latest-canary';
-    fetch(latestCanary)
-      .then((data: any) => {
-        if (data) {
-          console.log('latest-canary');
-          console.log(JSON.parse(data));
-          let fetchStatusUrl = '/api/v2/applications/getApplicationHealth?canaryId=' + data.canaryId;
-          fetch(fetchStatusUrl)
-            .then(response => {
-              return response.json();
-            })
-            .then((data: any) => {
-              if (data) {
-                console.log('getApplicationHealth');
-                console.log(JSON.parse(data));
-              }
-            }).catch(err => {
-              console.error('res.data', err)
-            });
-        }
-      }).catch(err => {
-        console.error('res.data', err)
-      });
-  })
+    let latestCanaryId = null;
+    if (latestCanaryId) {
+      setReportStatus(true);
+      if (props.resource.status.metricResults && props.resource.status.metricResults.length) {
+        latestCanaryId = props.resource.status.metricResults[props.resource.status.metricResults.length - 1];
+      }
+      let fetchStatusUrl = 'https://isd-dev.argo-dev.opsmx.net/gate/autopilot/api/v2/applications/getApplicationHealth?canaryId=' + latestCanaryId;
+      fetch(fetchStatusUrl)
+        .then(response => {
+          return response.json();
+        })
+        .then((data: any) => {
+          if (data) {
+            console.log('getApplicationHealth');
+            console.log(JSON.parse(data));
+          }
+        }).catch(err => {
+          console.error('res.data', err)
+        });
+    }
+    else {
+      setReportStatus(false)
+    }
+  }, [])
 
-  console.log("props: ",props);
+  console.log("props: ", props);
   return (
     <div className="shopping-list">
+      {!noReport && <h1>No Report</h1>}
       <h1>Shopping List</h1>
       <ul>
         <li>Instagram</li>
@@ -45,7 +47,8 @@ export const Extension = (props: {
         <li>Facebook</li>
       </ul>
     </div>
-  );
+}
+  ) 
 };
 
 export const component = Extension;
