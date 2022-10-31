@@ -52,7 +52,7 @@ export const Extension = (props: {
           <li>Oculus</li>
           <li>Facebook</li>
         </ul>
-        {appHealthData && appHealthData.map(serviceNameInfo => {
+        {appHealthData && appHealthData.services.map(serviceNameInfo => {
           return <>
             <div className="summary-box-text">Metrics</div>
             <div className="summaryinnerbox mb-2 text-center d-flex">
