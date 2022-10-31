@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
+import from './style.module.css';
 
 interface ApplicationResourceTree { }
 interface State { status: any }
@@ -27,10 +28,10 @@ export const Extension = (props: {
           return response.json();
         })
         .then((data: any) => {
-          console.log(data);
+          console.log(JSON.parse(JSON.stringify(data)));
           if (data) {
             console.log('getApplicationHealth');
-            setAppHealthData(data)
+            setAppHealthData(JSON.parse(JSON.stringify(data)))
           }
         }).catch(err => {
           console.error('res.data', err)
