@@ -12,7 +12,8 @@ export const Extension = (props: {
   useEffect(() => {
     let latestCanaryId = null;
     if (props.resource.status.metricResults && props.resource.status.metricResults.length) {
-      latestCanaryId = props.resource.status.metricResults[props.resource.status.metricResults.length - 1];
+      latestCanaryId = props.resource.status.metricResults[props.resource.status.metricResults.length - 1]?.canaryId;
+      console.log(latestCanaryId)
     }
     if (latestCanaryId) {
       setReportStatus(true);
