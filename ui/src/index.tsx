@@ -13,6 +13,7 @@ export const Extension = (props: {
     let latestCanaryId = null;
     if (props.resource.status.metricResults && props.resource.status.metricResults.length) {
       latestCanaryId = props.resource.status.metricResults[props.resource.status.metricResults.length - 1]?.canaryId;
+      latestCanaryId = '1498';
       console.log(latestCanaryId)
     }
     if (latestCanaryId) {
