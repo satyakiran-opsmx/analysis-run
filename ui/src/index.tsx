@@ -15,7 +15,7 @@ export const Extension = (props: {
     if (props.resource.status.metricResults && props.resource.status.metricResults.length) {
       latestCanaryId = props.resource.status.metricResults[props.resource.status.metricResults.length - 1]?.canaryId;
       console.log(latestCanaryId)
-      if(!latestCanaryId){
+      if (!latestCanaryId) {
         latestCanaryId = '1498'; //dummy canary to test
       }
     }
@@ -27,10 +27,10 @@ export const Extension = (props: {
           return response.json();
         })
         .then((data: any) => {
+          console.log(data);
           if (data) {
             console.log('getApplicationHealth');
-            console.log(JSON.parse(data));
-            setAppHealthData(JSON.parse(data))
+            setAppHealthData(data)
           }
         }).catch(err => {
           console.error('res.data', err)
@@ -52,33 +52,33 @@ export const Extension = (props: {
           <li>Oculus</li>
           <li>Facebook</li>
         </ul>
-        {appHealthData && appHealthData.map(serviceNameInfo=>{
+        {appHealthData && appHealthData.map(serviceNameInfo => {
           return <>
-                    <div className="summary-box-text">Metrics</div>
-                    <div  className="summaryinnerbox mb-2 text-center d-flex">          
-                      <div className="summarysmallbox summary-logmetric-firstbox flex-grow-1" >                           
-                        <div className="summary-small-bottom" >{serviceNameInfo['metricScore']}</div>
-                        <div className="summary-small-bottom" > - </div>            
-                        <div className="summary-small-top" >Metrics</div> 
-                      </div>
-                      <div className="summarysmallbox flex-grow-1">              
-                        <div className="summary-small-bottom darkred-box">{serviceNameInfo['metricsCount'] ? serviceNameInfo['metricsCount']['fail']:''} </div>            
-                        <div className="summary-small-top darkred-box">Failed</div>
-                      </div>
-                      <div className="summarysmallbox flex-grow-1">              
-                        <div className="summary-small-bottom darkred-box">{serviceNameInfo['metricsCount'] ? serviceNameInfo['metricsCount']['critical']:''}</div>            
-                        <div className="summary-small-top darkred-box">Critical</div>
-                      </div>
-                      <div className="summarysmallbox flex-grow-1">              
-                        <div className="summary-small-bottom lightyellow-box">{serviceNameInfo['metricsCount'] ? serviceNameInfo['metricsCount']['watchlist']:''}</div>            
-                        <div className="summary-small-top lightyellow-box">Watchlist</div>
-                      </div>
-                      <div className="summarysmallbox flex-grow-1 border0">              
-                        <div className="summary-small-bottom lightgreen-box">{serviceNameInfo['metricsCount'] ? serviceNameInfo['metricsCount']['total']:''}</div>            
-                        <div className="summary-small-top lightgreen-box">Count</div>
-                      </div>
-                    </div>
-                    </>
+            <div className="summary-box-text">Metrics</div>
+            <div className="summaryinnerbox mb-2 text-center d-flex">
+              <div className="summarysmallbox summary-logmetric-firstbox flex-grow-1" >
+                <div className="summary-small-bottom" >{serviceNameInfo['metricScore']}</div>
+                <div className="summary-small-bottom" > - </div>
+                <div className="summary-small-top" >Metrics</div>
+              </div>
+              <div className="summarysmallbox flex-grow-1">
+                <div className="summary-small-bottom darkred-box">{serviceNameInfo['metricsCount'] ? serviceNameInfo['metricsCount']['fail'] : ''} </div>
+                <div className="summary-small-top darkred-box">Failed</div>
+              </div>
+              <div className="summarysmallbox flex-grow-1">
+                <div className="summary-small-bottom darkred-box">{serviceNameInfo['metricsCount'] ? serviceNameInfo['metricsCount']['critical'] : ''}</div>
+                <div className="summary-small-top darkred-box">Critical</div>
+              </div>
+              <div className="summarysmallbox flex-grow-1">
+                <div className="summary-small-bottom lightyellow-box">{serviceNameInfo['metricsCount'] ? serviceNameInfo['metricsCount']['watchlist'] : ''}</div>
+                <div className="summary-small-top lightyellow-box">Watchlist</div>
+              </div>
+              <div className="summarysmallbox flex-grow-1 border0">
+                <div className="summary-small-bottom lightgreen-box">{serviceNameInfo['metricsCount'] ? serviceNameInfo['metricsCount']['total'] : ''}</div>
+                <div className="summary-small-top lightgreen-box">Count</div>
+              </div>
+            </div>
+          </>
         })}
       </div>
     }
