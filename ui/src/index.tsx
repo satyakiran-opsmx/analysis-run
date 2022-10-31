@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import from './style.module.css';
+import './style.module.css';
 
 interface ApplicationResourceTree { }
 interface State { status: any }
