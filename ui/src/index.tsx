@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useEffect } from "react";
 
 interface ApplicationResourceTree { }
 interface State { }
