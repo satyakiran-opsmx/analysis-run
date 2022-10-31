@@ -11,11 +11,11 @@ export const Extension = (props: {
   const [noReport, setReportStatus] = useState(false);
   useEffect(() => {
     let latestCanaryId = null;
+    if (props.resource.status.metricResults && props.resource.status.metricResults.length) {
+      latestCanaryId = props.resource.status.metricResults[props.resource.status.metricResults.length - 1];
+    }
     if (latestCanaryId) {
       setReportStatus(true);
-      if (props.resource.status.metricResults && props.resource.status.metricResults.length) {
-        latestCanaryId = props.resource.status.metricResults[props.resource.status.metricResults.length - 1];
-      }
       let fetchStatusUrl = 'https://isd-dev.argo-dev.opsmx.net/gate/autopilot/api/v2/applications/getApplicationHealth?canaryId=' + latestCanaryId;
       fetch(fetchStatusUrl)
         .then(response => {
@@ -36,18 +36,19 @@ export const Extension = (props: {
   }, [])
 
   console.log("props: ", props);
-  return (
-    <div className="shopping-list">
-      {!noReport && <h1>No Report</h1>}
-      <h1>Shopping List</h1>
-      <ul>
-        <li>Instagram</li>
-        <li>WhatsApp</li>
-        <li>Oculus</li>
-        <li>Facebook</li>
-      </ul>
-    </div>
-  ) 
+  return <>
+    {!noReport ? <h1>No Report Available</h1> :
+      <div className="shopping-list">
+        <h1>Shopping List</h1>
+        <ul>
+          <li>Instagram</li>
+          <li>WhatsApp</li>
+          <li>Oculus</li>
+          <li>Facebook</li>
+        </ul>
+      </div>
+    }
+  </>
 };
 
 export const component = Extension;
