@@ -21,7 +21,7 @@ export const Extension = (props: {
     }
     if (latestCanaryId) {
       setReportStatus(true);
-      let fetchStatusUrl = 'https://isd-dev.argo-dev.opsmx.net/gate/autopilot/canaries/getServiceList?canary' + latestCanaryId;
+      let fetchStatusUrl = 'https://isd-dev.argo-dev.opsmx.net/gate/autopilot/canaries/getServiceList?canaryId=' + latestCanaryId;
       fetch(fetchStatusUrl)
         .then(response => {
           return response.json();
