@@ -17,7 +17,7 @@ export const Extension = (props: {
         <li>Oculus</li>
         <li>Facebook</li>
       </ul>
-      <iframe src="http://localhost:4200/application"></iframe>
+      <iframe src="http://localhost:4200/plugin-isd/verification/final-tests/1498/fromPlugin/200"></iframe>
     </div>
   );
 };
