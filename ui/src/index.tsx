@@ -47,7 +47,6 @@ export const Extension = (props: {
         <li>Facebook</li>
       </ul>
     </div>
-}
   ) 
 };
 
