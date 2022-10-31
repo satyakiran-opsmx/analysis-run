@@ -17,7 +17,7 @@ export const Extension = (props: {
         <li>Oculus</li>
         <li>Facebook</li>
       </ul>
-      <iframe src="https://isd-dev.argo-dev.opsmx.net/ui/setup/cdintegration"></iframe>
+      <iframe src="http://localhost:4200/application"></iframe>
     </div>
   );
 };
