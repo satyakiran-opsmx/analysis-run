@@ -10,7 +10,7 @@ export const Extension = (props: {
  
   return (
     <div className="shopping-list">
-      <iframe src="http://localhost:4200/plugin-isd/verification/final-tests/1498/fromPlugin/200" ></iframe>
+      <iframe src="http://localhost:4200/plugin-isd/verification/final-tests/1498/fromPlugin/200" style={{width:'100%'}} ></iframe>
     </div>
   );
 };
